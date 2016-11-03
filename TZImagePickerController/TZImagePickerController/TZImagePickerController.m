@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 1.7.1 - 2016.10.18
+//  version 1.7.0 - 2016.10.18
 
 #import "TZImagePickerController.h"
 #import "TZPhotoPickerController.h"
@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationBar.barStyle = UIBarStyleBlack;
+//    self.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationBar.translucent = YES;
     [TZImageManager manager].shouldFixOrientation = NO;
 
@@ -47,11 +47,11 @@
     self.oKButtonTitleColorNormal   = [UIColor colorWithRed:(83/255.0) green:(179/255.0) blue:(17/255.0) alpha:1.0];
     self.oKButtonTitleColorDisabled = [UIColor colorWithRed:(83/255.0) green:(179/255.0) blue:(17/255.0) alpha:0.5];
     
-    if (iOS7Later) {
-        self.navigationBar.barTintColor = [UIColor colorWithRed:(34/255.0) green:(34/255.0)  blue:(34/255.0) alpha:1.0];
-        self.navigationBar.tintColor = [UIColor whiteColor];
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+//    if (iOS7Later) {
+//        self.navigationBar.barTintColor = [UIColor colorWithRed:(34/255.0) green:(34/255.0)  blue:(34/255.0) alpha:1.0];
+//        self.navigationBar.tintColor = [UIColor whiteColor];
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
 }
 
 - (void)setBarItemTextFont:(UIFont *)barItemTextFont {
@@ -85,7 +85,8 @@
     _originStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [UIApplication sharedApplication].statusBarStyle = iOS7Later ? UIStatusBarStyleLightContent : UIStatusBarStyleBlackOpaque;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    [UIApplication sharedApplication].statusBarStyle = iOS7Later ? UIStatusBarStyleLightContent : UIStatusBarStyleBlackOpaque;
 #pragma clang diagnostic pop
 }
 
@@ -125,7 +126,7 @@
         self.sortAscendingByModificationDate = YES;
         self.autoDismiss = YES;
         self.barItemTextFont = [UIFont systemFontOfSize:15];
-        self.barItemTextColor = [UIColor whiteColor];
+//        self.barItemTextColor = [UIColor whiteColor];
         self.columnNumber = columnNumber;
         [self configDefaultImageName];
         
@@ -294,21 +295,6 @@
     TZAlbumPickerController *albumPickerVc = [self.childViewControllers firstObject];
     albumPickerVc.columnNumber = _columnNumber;
     [TZImageManager manager].columnNumber = _columnNumber;
-}
-
-- (void)setMinPhotoWidthSelectable:(NSInteger)minPhotoWidthSelectable {
-    _minPhotoWidthSelectable = minPhotoWidthSelectable;
-    [TZImageManager manager].minPhotoWidthSelectable = minPhotoWidthSelectable;
-}
-
-- (void)setMinPhotoHeightSelectable:(NSInteger)minPhotoHeightSelectable {
-    _minPhotoHeightSelectable = minPhotoHeightSelectable;
-    [TZImageManager manager].minPhotoHeightSelectable = minPhotoHeightSelectable;
-}
-
-- (void)setHideWhenCanNotSelect:(BOOL)hideWhenCanNotSelect {
-    _hideWhenCanNotSelect = hideWhenCanNotSelect;
-    [TZImageManager manager].hideWhenCanNotSelect = hideWhenCanNotSelect;
 }
 
 - (void)setPhotoPreviewMaxWidth:(CGFloat)photoPreviewMaxWidth {
